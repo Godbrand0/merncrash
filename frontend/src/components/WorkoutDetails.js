@@ -4,7 +4,7 @@ import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
 export default function WorkoutDetails({ workout }) {
   const { dispatch } = useWorkoutsContext();
   const handleClick = async () => {
-    const response = await fetch("/api/workout/9" + workout._id, {
+    const response = await fetch("/api/workout/" + workout._id, {
       method: "DELETE",
     });
     const json = await response.json();
