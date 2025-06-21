@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import useSignup from "../hooks/useSignup";
 
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
 
+  const { signup, error, isPending } = useSignup();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(email, Password);
+    await signup(email, Password);
   };
 
   return (
@@ -28,7 +31,8 @@ export default function Signup() {
         value={Password}
       />
 
-      <button>Sign up</button>
+      <button disabled={isPending}>Sign up</button>
+      {error && <div className="error">{error}</div>}
     </form>
   );
 }
